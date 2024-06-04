@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import faKotlin from '../../assets/kotlin.png'
 import faAndroid from '../../assets/android.png'
 import faFirebase from '../../assets/firebase.png'
@@ -7,6 +7,8 @@ import faPHP from '../../assets/php.png'
 import faCpanel from '../../assets/cpanel.png'
 import faMySql from '../../assets/mysql.png'
 import faBootstrap from '../../assets/bootstrap.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const workExperiences = [
   {
@@ -38,11 +40,11 @@ const workExperiences = [
   },
 ];
 
-const WorkExperienceCard = ({ experience, onReadMore }) => {
+const WorkExperienceCard = ({ experience, onReadMore, onImageLoad }) => {
   return (
     <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent text-white">
       <div className="relative mx-4 mt-4 overflow-hidden text-white rounded-xl">
-        <img src={experience.image} alt={experience.title} />
+        <img src={experience.image} alt={experience.title} onLoad={onImageLoad}/>
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
@@ -70,15 +72,30 @@ const WorkExperienceCard = ({ experience, onReadMore }) => {
   );
 };
 
+const ProgressBar = ({ progress }) => (
+  <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+    <div
+      className="bg-blue-600 h-2.5 rounded-full"
+      style={{ width: `${progress}%` }}
+    ></div>
+  </div>
+);
+
 const Modal = ({ experience, onClose }) => {
   if (!experience) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" onClick={onClose}>
       <div
-        className="bg-white p-8 rounded-lg max-w-4xl w-full mx-4 md:mx-0"
+        className="bg-white p-8 rounded-lg max-w-4xl w-full mx-4 md:mx-0 relative"
         onClick={(e) => e.stopPropagation()}
       >
+        <button 
+          className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900"
+          onClick={onClose}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
         <h2 className="text-2xl font-bold mb-4">{experience.title}</h2>
         <div className="flex flex-col md:flex-row">
           <img src={experience.image} alt={experience.title} className="w-full md:w-1/2 h-auto rounded-xl mb-4 md:mb-0 md:mr-4" />
@@ -103,6 +120,19 @@ const Modal = ({ experience, onClose }) => {
 
 export default function Work() {
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [loadedCount, setLoadedCount] = useState(0);
+  const totalImages = workExperiences.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (loadedCount < totalImages) {
+        setLoadedCount((prevCount) => prevCount + 1);
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, [loadedCount, totalImages]);  
 
   const handleReadMore = (experience) => {
     setSelectedExperience(experience);
@@ -112,6 +142,13 @@ export default function Work() {
     setSelectedExperience(null);
   };
 
+  const handleImageLoad = () => {
+    setLoadedCount((prevCount) => prevCount + 1);
+  };
+
+
+  const progress = (loadedCount / totalImages) * 100;
+
   return (
     <div className="flex flex-col items-center py-10">
       <div className="content-center mb-12">
@@ -119,11 +156,17 @@ export default function Work() {
           Work Experiences
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-        {workExperiences.map((experience) => (
-          <WorkExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} />
-        ))}
-      </div>
+      {loadedCount < totalImages ? (
+        <div className="w-full max-w-md">
+          <ProgressBar progress={progress} />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          {workExperiences.map((experience) => (
+            <WorkExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} onImageLoad={handleImageLoad} />
+          ))}
+        </div>
+      )}
       {selectedExperience && (
         <Modal experience={selectedExperience} onClose={handleCloseModal} />
       )}
