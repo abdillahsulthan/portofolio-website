@@ -4,11 +4,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        'custom-gray': '#272727',
-      }
-    },
+    extend: {},
   },
   plugins: [
     require('@tailwindcss/typography'),

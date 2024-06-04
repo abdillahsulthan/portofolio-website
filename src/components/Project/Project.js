@@ -119,7 +119,7 @@ const Modal = ({ experience, onClose }) => {
         </button>
         <h2 className="text-2xl font-bold mb-4">{experience.title}</h2>
         <div className="flex flex-col md:flex-row">
-          <img src={experience.image} alt={experience.title} className="w-full md:w-1/2 h-auto rounded-xl mb-4 md:mb-0 md:mr-4" />
+          <img src={experience.image} alt={experience.title} className="w-full md:w-1/2 h-auto rounded-xl mb-4 md:mb-0 md:mr-4"/>
           <div className="flex-1">
             <p className="text-gray-500 text-justify">{experience.description}</p>
             {experience.techStacks && (

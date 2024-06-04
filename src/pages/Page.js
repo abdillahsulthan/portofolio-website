@@ -6,7 +6,7 @@ import Project from "../components/Project/Project";
 
 export default function Page() {
     return (
-        <div className="bg-custom-gray">
+        <div>
             <Header />
             <Work />
             <Project />
