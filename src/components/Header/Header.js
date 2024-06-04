@@ -45,7 +45,7 @@ export default function Header() {
                     <a href="https://instagram.com/abdillah.sulthan" target="_blank" rel="noopener noreferrer" className="mr-4">
                         <FontAwesomeIcon icon={faInstagram} className="text-white text-2xl hover:text-gray-400" />
                     </a>
-                    <a href="https://instagram.com/abdillah.sulthan" target="_blank" rel="noopener noreferrer">
+                    <a href="https://drive.google.com/drive/folders/1y9adkHWEg_d8dBTRLq64gCZPYB5rmzQ7?usp=share_link" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faGoogleDrive} className="text-white text-2xl hover:text-gray-400" />
                     </a>
                 </div>
