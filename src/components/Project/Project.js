@@ -9,6 +9,8 @@ import faFlutter from '../../assets/flutter.png'
 import faDjango from '../../assets/django.png'
 import faTailwind from '../../assets/tailwind.png'
 import faBootstrap from '../../assets/bootstrap.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const projectExperiences = [
   {
@@ -19,7 +21,8 @@ const projectExperiences = [
     image: require('../../assets/Project-Sport.png'),
     techStacks: [
       faKotlin, faAndroid
-    ]
+    ],
+    githubRepo: 'https://github.com/abdillahsulthan/sport-activities-application'
   },
   {
     title: 'GitHub Users',
@@ -29,7 +32,8 @@ const projectExperiences = [
     image: require('../../assets/Project-GitHub.png'),
     techStacks: [
       faKotlin, faAndroid
-    ]
+    ],
+    githubRepo: 'https://github.com/abdillahsulthan/github-user-application'
   },
   {
     title: 'Cancer Detection',
@@ -39,7 +43,8 @@ const projectExperiences = [
     image: require('../../assets/Project-Cancer.png'),
     techStacks: [
       faKotlin, faAndroid
-    ]
+    ],
+    githubRepo: 'https://github.com/abdillahsulthan/cancer-detection-application'
   },
   {
     title: 'Katab Story',
@@ -49,7 +54,8 @@ const projectExperiences = [
     image: require('../../assets/Project-Story.png'),
     techStacks: [
       faKotlin, faAndroid
-    ]
+    ],
+    githubRepo: 'https://github.com/abdillahsulthan/story-application'
   },
   {
     title: 'SILOGISTIK',
@@ -59,7 +65,8 @@ const projectExperiences = [
     image: require('../../assets/Project-SILOGISTIK.png'),
     techStacks: [
       faSpringBoot, faDocker, faPostgresql, faBootstrap
-    ]
+    ],
+    githubRepo: 'https://github.com/abdillahsulthan/SILOGISTIK'
   },
   {
     title: 'SILK',
@@ -69,7 +76,8 @@ const projectExperiences = [
     image: require('../../assets/Project-SILK.png'),
     techStacks: [
       faSpringBoot, faDocker, faPostgresql, faReact, faBootstrap
-    ]
+    ],
+    githubRepo: 'https://github.com/PropenFroz'
   },
   {
     title: 'NgeTech',
@@ -79,7 +87,8 @@ const projectExperiences = [
     image: require('../../assets/Project-Ngetech.png'),
     techStacks: [
       faDjango, faFlutter, faTailwind
-    ]
+    ],
+    githubRepo: 'https://github.com/ngetech'
   },
 ];
 
@@ -105,6 +114,14 @@ const Modal = ({ experience, onClose }) => {
                     <img key={index} src={tech} alt="Tech Stack" className="h-8 w-auto mb-2" />
                   ))}
                 </div>
+              </div>
+            )}
+            {experience.githubRepo && (
+              <div className="mt-4 flex flex-col items-start">
+                <h3 className="text-lg font-semibold mb-2">Repository:</h3>
+                <a href={experience.githubRepo} target="_blank" rel="noopener noreferrer" className='flex items-center'>
+                  <FontAwesomeIcon icon={faGithub} className="text-black text-3xl hover:text-gray-400" />
+                </a>
               </div>
             )}
           </div>
