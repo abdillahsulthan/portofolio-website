@@ -54,7 +54,7 @@ npm run build
 
 Deploy the application to services like Vercel, Netlify, Firebase, or any other hosting platform.
 
-<div align="center">
+<div align="center" style="margin-top: 40px;">
   <h3>Connect with me</h3>
   <a href="https://www.linkedin.com/in/abdillahsulthan" target="_blank">
     <img src="https://img.shields.io/badge/-LinkedIn-black?style=for-the-badge&logo=linkedin" alt="LinkedIn">
