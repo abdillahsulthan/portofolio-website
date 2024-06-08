@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <div className="flex flex-row justify-center items-center px-20 py-20">
         <div className="mr-10">
-            <div className="lg:w-44 lg:h-44 md:w-32 md:h-32 w-30 h-30 rounded-full overflow-hidden border-2 border-white">
+            <div className="lg:w-44 lg:h-44 md:w-40 md:h-40 w-36 h-36 rounded-full overflow-hidden border-2 border-white">
                 <img className="w-full h-full object-cover" src={imageSulthan} alt="Profile" />
             </div>
         </div>

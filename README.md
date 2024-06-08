@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+<h2 align="center">Portfolio of Abdillah Sulthan Naufal Panggabean</h2>
+<div align="center" style="margin-top: 20px; margin-bottom: 20px">
+  <img src="./image/new-profile.jpeg" alt="Profile Image" background-size="contain" style="width: 200px; height: auto;">
+</div>
+<p align="center">Provides a comprehensive view of my work, including projects and an overview of my journey.</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Portofolio Website
 
-## Available Scripts
+<p align="justify">
+    Welcome to my portfolio repository! This project showcases my skills, projects, and experience as a Website and Mobile Developer. The portfolio website is designed to provide a comprehensive view of my work, including detailed project descriptions, code samples, and a glimpse into my journey.
+</p>
 
-In the project directory, you can run:
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Work Experience
+- Detailed descriptions of my roles and responsibilities in various positions.
+- Achievements reached during my work experience..
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Project Experience
+- Showcase of key projects, including project descriptions and technologies used.
+- Links to live demos or repositories for each project.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Clone the repository
+git clone https://github.com/abdillahsulthan/portofolio-website.git
 
-### `npm run build`
+# Navigate to the project directory
+cd portofolio-sulthan
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the Application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run the application in development mode, use the following command:
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Building the Application
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When you're ready to build the application for production, run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Deployment
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Deploy the application to services like Vercel, Netlify, Firebase, or any other hosting platform.
