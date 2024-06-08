@@ -1,10 +1,17 @@
-<h2 align="center">Portfolio of Abdillah Sulthan Naufal Panggabean</h2>
-<div align="center" style="margin-top: 20px; margin-bottom: 20px">
-  <img src="./image/new-profile.jpeg" alt="Profile Image" background-size="contain" style="width: 200px; height: auto;">
-</div>
-<p align="center">Provides a comprehensive view of my work, including projects and an overview of my journey.</p>
+<h1 align="center">Portfolio of Abdillah Sulthan Naufal Panggabean</h1>
+<p align="start">Provides a comprehensive view of my work, including projects and an overview of my journey.</p>
 
-# Portofolio Website
+<div align="start">
+  <h3>Connect with me</h3>
+  <a href="https://www.linkedin.com/in/abdillahsulthan" target="_blank">
+    <img src="https://img.shields.io/badge/-LinkedIn-black?style=flat&logo=linkedin" alt="LinkedIn">
+  </a>
+  <a href="https://www.instagram.com/abdillahsulthan" target="_blank">
+    <img src="https://img.shields.io/badge/-Instagram-black?style=flat&logo=instagram" alt="Instagram">
+  </a>
+</div>
+
+## Introduction
 
 <p align="justify">
     Welcome to my portfolio repository! This project showcases my skills, projects, and experience as a Website and Mobile Developer. The portfolio website is designed to provide a comprehensive view of my work, including detailed project descriptions, code samples, and a glimpse into my journey.
