@@ -1,15 +1,8 @@
-<h1 align="center">Portfolio of Abdillah Sulthan Naufal Panggabean</h1>
-<p align="start">Provides a comprehensive view of my work, including projects and an overview of my journey.</p>
-
-<div align="start">
-  <h3>Connect with me</h3>
-  <a href="https://www.linkedin.com/in/abdillahsulthan" target="_blank">
-    <img src="https://img.shields.io/badge/-LinkedIn-black?style=flat&logo=linkedin" alt="LinkedIn">
-  </a>
-  <a href="https://www.instagram.com/abdillahsulthan" target="_blank">
-    <img src="https://img.shields.io/badge/-Instagram-black?style=flat&logo=instagram" alt="Instagram">
-  </a>
+<h2 align="center">Portfolio of Abdillah Sulthan Naufal Panggabean</h2>
+<div align="center" style="margin-top: 20px; margin-bottom: 20px">
+  <img src="./image/new-profile.jpeg" alt="Profile Image" style="width: 200px; height: auto;">
 </div>
+<p align="center">Provides a comprehensive view of my work, including projects and an overview of my journey.</p>
 
 ## Introduction
 
@@ -60,3 +53,13 @@ npm run build
 ## Deployment
 
 Deploy the application to services like Vercel, Netlify, Firebase, or any other hosting platform.
+
+<div align="center">
+  <h3>Connect with me</h3>
+  <a href="https://www.linkedin.com/in/abdillahsulthan" target="_blank">
+    <img src="https://img.shields.io/badge/-LinkedIn-black?style=for-the-badge&logo=linkedin" alt="LinkedIn">
+  </a>
+  <a href="https://www.instagram.com/yourprofile" target="_blank">
+    <img src="https://img.shields.io/badge/-Instagram-black?style=for-the-badge&logo=instagram" alt="Instagram">
+  </a>
+</div>
