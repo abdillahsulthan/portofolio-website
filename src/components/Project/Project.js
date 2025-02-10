@@ -15,39 +15,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const projectExperiences = [
   {
-    title: 'Sport Activities',
-    description: 'The Sport Activities Application is an Android app developed as the culminating project for the "Belajar Membuat Aplikasi Android untuk Pemula" course by Dicoding. Built with Kotlin, it enables users to view sports activities offered by the Faculty of Computer Science UI. Users can access detailed information about each activity, including descriptions, practice locations, and supervisors.',
-    role: 'Android Developer',
-    time: 'Mar 2024',
-    image: require('../../assets/Project-Sport.png'),
-    techStacks: [
-      faKotlin, faAndroid
-    ],
-    githubRepo: 'https://github.com/abdillahsulthan/sport-activities-application',
-  },
-  {
-    title: 'GitHub Users',
-    description: 'The GitHub Users Application is an Android app developed as the culminating project for the "Belajar Fundamental Aplikasi Android" course by Dicoding. Built with Kotlin, it enables users to explore GitHub users. Leveraging the GitHub API, it features user search functionality, the ability to add favorites for quick access, and offers a convenient dark mode option for improved readability in low-light environments.',
-    role: 'Android Developer',
-    time: 'Mar 2024',
-    image: require('../../assets/Project-GitHub.png'),
-    techStacks: [
-      faKotlin, faAndroid
-    ],
-    githubRepo: 'https://github.com/abdillahsulthan/github-user-application',
-  },
-  {
-    title: 'Cancer Detection',
-    description: 'The Cancer Detection Application is an Android app developed as the culminating project for the "Belajar Penerapan Machine Learning untuk Android" course by Dicoding. Built with Kotlin, It enables users to upload images and detects whether they contain cancer using a machine learning model. Additionally, it includes a feature to view the analysis history of user-uploaded images and provides articles about cancer from an external API.',
-    role: 'Android Developer',
-    time: 'Apr 2024',
-    image: require('../../assets/Project-Cancer.png'),
-    techStacks: [
-      faKotlin, faAndroid
-    ],
-    githubRepo: 'https://github.com/abdillahsulthan/cancer-detection-application',
-  },
-  {
     title: 'Katab Story',
     description: 'The Katab Story Application is an Android app developed as the culminating project for the "Belajar Pengembangan Aplikasi Android Intermediate" course by Dicoding. Built with Kotlin, it enables users to log in and view stories from all users of the Story Application. Additionally, it allows users to upload their own stories using either the gallery or CameraX.',
     role: 'Android Developer',
@@ -57,17 +24,6 @@ const projectExperiences = [
       faKotlin, faAndroid
     ],
     githubRepo: 'https://github.com/abdillahsulthan/story-application',
-  },
-  {
-    title: 'SILOGISTIK',
-    description: 'Developed a web application with Spring Boot, offers an advanced logistics solution for efficient supply chain management.',
-    role: 'Full Stack Developer',
-    time: 'Oct 2023',
-    image: require('../../assets/Project-SILOGISTIK.png'),
-    techStacks: [
-      faSpringBoot, faDocker, faPostgresql, faBootstrap
-    ],
-    githubRepo: 'https://github.com/abdillahsulthan/SILOGISTIK',
   },
   {
     title: 'SILK',
@@ -92,15 +48,6 @@ const projectExperiences = [
     githubRepo: 'https://github.com/ngetech',
   },
 ];
-
-const ProgressBar = ({ progress }) => (
-  <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-    <div
-      className="bg-blue-600 h-2.5 rounded-full"
-      style={{ width: `${progress}%` }}
-    ></div>
-  </div>
-);
 
 const Modal = ({ experience, onClose }) => {
   if (!experience) return null;
@@ -181,19 +128,22 @@ const ProjectExperienceCard = ({ experience, onReadMore, onImageLoad }) => {
 
 export default function Project() {
   const [selectedExperience, setSelectedExperience] = useState(null);
-  const [loadedCount, setLoadedCount] = useState(0);
-  const totalImages = projectExperiences.length;
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (loadedCount < totalImages) {
-        setLoadedCount((prevCount) => prevCount + 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, [loadedCount, totalImages]);  
+    const imagePromises = projectExperiences.map(
+      (experience) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.src = experience.image;
+          img.onload = resolve;
+        })
+    );
+
+    Promise.all(imagePromises).then(() => {
+      setAllImagesLoaded(true);
+    });
+  }, []);
 
   const handleReadMore = (experience) => {
     setSelectedExperience(experience);
@@ -203,11 +153,11 @@ export default function Project() {
     setSelectedExperience(null);
   };
 
-  const handleImageLoad = () => {
-    setLoadedCount((prevCount) => prevCount + 1);
-  };
-
-  const progress = (loadedCount / totalImages) * 100;
+  const Spinner = () => (
+    <div className="flex justify-center items-center">
+      <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col items-center py-10">
@@ -216,20 +166,18 @@ export default function Project() {
           Project Experiences
         </h1>
       </div>
-      {loadedCount < totalImages ? (
-        <div className="w-full max-w-md">
-          <ProgressBar progress={progress} />
-        </div>
+      
+      {!allImagesLoaded ? (
+        <Spinner />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {projectExperiences.map((experience) => (
-            <ProjectExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} onImageLoad={handleImageLoad} />
+            <ProjectExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} />
           ))}
         </div>
       )}
-      {selectedExperience && (
-        <Modal experience={selectedExperience} onClose={handleCloseModal} />
-      )}
+
+      {selectedExperience && <Modal experience={selectedExperience} onClose={handleCloseModal} />}
     </div>
   );  
 }

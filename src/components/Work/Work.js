@@ -1,50 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import faKotlin from '../../assets/kotlin.png'
-import faAndroid from '../../assets/android.png'
-import faFirebase from '../../assets/firebase.png'
-import faReact from '../../assets/react.png'
-import faPHP from '../../assets/php.png'
-import faCpanel from '../../assets/cpanel.png'
-import faMySql from '../../assets/mysql.png'
-import faBootstrap from '../../assets/bootstrap.png'
+import faKotlin from '../../assets/kotlin.png';
+import faAndroid from '../../assets/android.png';
+import faFirebase from '../../assets/firebase.png';
+import faReact from '../../assets/react.png';
+import faPHP from '../../assets/php.png';
+import faCpanel from '../../assets/cpanel.png';
+import faMySql from '../../assets/mysql.png';
+import faBootstrap from '../../assets/bootstrap.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const workExperiences = [
   {
     title: 'netZAP',
-    description: 'Collaborated in a team of four to develop a website for product recognition, career development, and company insight for netZAP utilizing the React framework and PHP. Developed features for product recognition, career advancement, and company insight on the netZAP platform.',
+    description: 'Collaborated in a team of four to develop a website for product recognition, career development, and company insight for netZAP utilizing the React framework and PHP.',
     role: 'Full Stack Developer',
     time: 'Jan - May, 2024',
     image: require('../../assets/Work-netZAP.png'),
-    techStacks: [
-      faReact, faPHP, faCpanel, faMySql, faBootstrap
-    ]
+    techStacks: [faReact, faPHP, faCpanel, faMySql, faBootstrap],
   },
   {
     title: 'Bangkit Academy 2024',
-    description: 'Bangkit Academy is a technology and professional development training program supported by Google, GoTo, and Traveloka. With a comprehensive curriculum and interactive learning approach, the program aims to equip participants with the skills necessary for success in the technology industry. At Bangkit Academy, participants engage in coursework on the Dicoding website, attend self-improvement seminars, and collaborate on capstone projects to enhance technical skills and professional development.',
+    description: 'Bangkit Academy is a technology and professional development training program supported by Google, GoTo, and Traveloka.',
     role: 'Android Developer',
     time: 'Feb - Jun, 2024',
     image: require('../../assets/Work-Bangkit.png'),
-    techStacks: [
-      faAndroid, faKotlin, faFirebase
-    ]
+    techStacks: [faAndroid, faKotlin, faFirebase],
   },
   {
     title: 'Faculty of Computer Science',
-    description: 'Assisted in teaching and grading for Linear Algebra and Introduction to Computer Architecture courses. Developed instructional materials for Linear Algebra topics and provided support using AVR Studio 4 and Logisim for Computer Architecture. ',
+    description: 'Assisted in teaching and grading for Linear Algebra and Introduction to Computer Architecture courses.',
     role: 'Teaching Assistant',
     time: 'Jan 2023 - Jan 2024',
     image: require('../../assets/Work-TA.png'),
   },
 ];
 
-const WorkExperienceCard = ({ experience, onReadMore, onImageLoad }) => {
+const WorkExperienceCard = ({ experience, onReadMore }) => {
   return (
     <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent text-white">
       <div className="relative mx-4 mt-4 overflow-hidden text-white rounded-xl">
-        <img src={experience.image} alt={experience.title} onLoad={onImageLoad}/>
+        <img src={experience.image} alt={experience.title} />
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
@@ -72,24 +68,12 @@ const WorkExperienceCard = ({ experience, onReadMore, onImageLoad }) => {
   );
 };
 
-const ProgressBar = ({ progress }) => (
-  <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-    <div
-      className="bg-blue-600 h-2.5 rounded-full"
-      style={{ width: `${progress}%` }}
-    ></div>
-  </div>
-);
-
 const Modal = ({ experience, onClose }) => {
   if (!experience) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" onClick={onClose}>
-      <div
-        className="bg-white p-8 rounded-lg max-w-4xl w-full mx-4 md:mx-0 relative"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="bg-white p-8 rounded-lg max-w-4xl w-full mx-4 md:mx-0 relative" onClick={(e) => e.stopPropagation()}>
         <button 
           className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900"
           onClick={onClose}
@@ -120,19 +104,22 @@ const Modal = ({ experience, onClose }) => {
 
 export default function Work() {
   const [selectedExperience, setSelectedExperience] = useState(null);
-  const [loadedCount, setLoadedCount] = useState(0);
-  const totalImages = workExperiences.length;
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (loadedCount < totalImages) {
-        setLoadedCount((prevCount) => prevCount + 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, [loadedCount, totalImages]);  
+    const imagePromises = workExperiences.map(
+      (experience) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.src = experience.image;
+          img.onload = resolve;
+        })
+    );
+
+    Promise.all(imagePromises).then(() => {
+      setAllImagesLoaded(true);
+    });
+  }, []);
 
   const handleReadMore = (experience) => {
     setSelectedExperience(experience);
@@ -142,13 +129,12 @@ export default function Work() {
     setSelectedExperience(null);
   };
 
-  const handleImageLoad = () => {
-    setLoadedCount((prevCount) => prevCount + 1);
-  };
-
-
-  const progress = (loadedCount / totalImages) * 100;
-
+  const Spinner = () => (
+    <div className="flex justify-center items-center">
+      <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+    </div>
+  );
+  
   return (
     <div className="flex flex-col items-center py-10">
       <div className="content-center mb-12">
@@ -156,20 +142,18 @@ export default function Work() {
           Work Experiences
         </h1>
       </div>
-      {loadedCount < totalImages ? (
-        <div className="w-full max-w-md">
-          <ProgressBar progress={progress} />
-        </div>
+
+      {!allImagesLoaded ? (
+        <Spinner />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {workExperiences.map((experience) => (
-            <WorkExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} onImageLoad={handleImageLoad} />
+            <WorkExperienceCard key={experience.title} experience={experience} onReadMore={handleReadMore} />
           ))}
         </div>
       )}
-      {selectedExperience && (
-        <Modal experience={selectedExperience} onClose={handleCloseModal} />
-      )}
+
+      {selectedExperience && <Modal experience={selectedExperience} onClose={handleCloseModal} />}
     </div>
   );
 }
