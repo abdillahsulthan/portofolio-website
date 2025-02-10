@@ -161,12 +161,6 @@ export default function Project() {
 
   return (
     <div className="flex flex-col items-center py-10">
-      <div className="content-center mb-12">
-        <h1 className="text-start lg:text-4xl md:text-3xl text-2xl text-transparent bg-clip-text bg-gradient-to-br from-gray-500 to-gray-300 font-semibold">
-          Project Experiences
-        </h1>
-      </div>
-      
       {!allImagesLoaded ? (
         <Spinner />
       ) : (
